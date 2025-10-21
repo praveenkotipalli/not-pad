@@ -1,0 +1,89 @@
+.note-card {
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  
+    /* --- ADD THESE TWO LINES --- */
+    height: 230px;    /* This sets a fixed height (you can adjust this value) */
+    overflow: hidden; /* This ensures nothing spills out of the card */
+  }
+  .note-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* .card-content {
+    padding: 20px;
+    cursor: pointer;
+  } */
+
+  .card-content {
+    padding: 20px;
+    cursor: pointer;
+    flex-grow: 1;  /* <-- ADD THIS */
+    overflow: hidden; /* <-- ADD THIS */
+  }
+  
+
+  .card-content h4 {
+    font-size: 1.25rem;
+    color: #333;
+    margin-bottom: 10px;
+    
+    /* --- ADD THESE 3 LINES --- */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .card-content p {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.6;
+    
+    /* --- REPLACE 'display: -webkit-box' etc. --- */
+    /* --- WITH THESE 3 LINES --- */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  
+  .card-footer {
+    padding: 10px 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.07);
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  .card-footer button {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+    font-weight: 500;
+    border-radius: 5px;
+  }
+  
+  .btn-edit {
+    background-color: transparent;
+    color: #007bff;
+    border: 1px solid #007bff;
+  }
+  .btn-edit:hover {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .btn-delete {
+    background-color: transparent;
+    color: #dc3545;
+    border: 1px solid #dc3545;
+  }
+  .btn-delete:hover {
+    background-color: #dc3545;
+    color: white;
+  }

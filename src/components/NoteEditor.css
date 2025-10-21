@@ -1,0 +1,85 @@
+.note-editor-container {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+  }
+  
+  .note-editor-container h3 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .note-editor-container input[type="text"],
+  .note-editor-container textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+  }
+  
+  .note-editor-container textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+  
+  .note-editor-container textarea:focus,
+  .note-editor-container input[type="text"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0,123,255,0.2);
+  }
+  
+  .note-editor-container .corrected-text {
+    border-color: #28a745;
+  }
+  
+  .original-preview-editor {
+    text-align: left;
+    background-color: #fdf6f6;
+    border: 1px solid #f5c6cb;
+    border-radius: 6px;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+  }
+  .original-preview-editor strong {
+    color: #721c24;
+  }
+  .original-preview-editor p {
+    margin: 5px 0 0 0;
+    color: #721c24;
+    text-decoration: line-through;
+    font-size: 0.9rem;
+  }
+  
+  .editor-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .editor-buttons .btn-start-listen { background-color: #28a745; color: white; }
+  .editor-buttons .btn-stop-listen { background-color: #dc3545; color: white; }
+  .editor-buttons .btn-check-grammar { background-color: #ffc107; color: #212529; }
+  
+  .main-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end; /* Aligns buttons to the right */
+  }
+  
+  .main-actions .btn-save-note {
+    background-color: #007bff;
+    color: white;
+    min-width: 120px;
+  }
+  .main-actions .btn-cancel-edit {
+    background-color: #6c757d;
+    color: white;
+  }

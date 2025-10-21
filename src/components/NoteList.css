@@ -1,0 +1,58 @@
+.note-list-container h3 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+  }
+  
+  .note-list-loading,
+  .note-list-grid p {
+    text-align: center;
+    color: #777;
+    font-size: 1.1rem;
+    padding: 20px;
+  }
+  
+  .note-list-grid {
+    display: grid;
+    /* Creates responsive columns: */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
+  }
+
+/* This is the new wrapper */
+.empty-notes-placeholder {
+    /* This makes the container span all columns of the grid */
+    grid-column: 1 / -1; 
+    
+    text-align: center; /* This centers the text */
+    padding: 10px;
+    color: #777;
+  }
+  
+  /* Your existing class for the image */
+  .empty-notes-placeholder .image {
+    width: 100%;
+    max-width:300px; /* Limit image size */
+    height: auto;
+    /* margin: 0 auto; Center the image block */
+  }
+  
+  /* Your existing class for the text */
+  .empty-notes-placeholder .name {
+    font-size: 1.1rem;
+    margin-top: 10px;
+    /* We don't need flex, text-align on the parent is enough */
+  }
+
+/* .image{
+    width: 100%;
+    height: auto;
+   
+}
+.name{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */

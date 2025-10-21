@@ -1,0 +1,129 @@
+/* Reset and Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Main Layout */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar (Left Side) */
+.sidebar {
+  flex-basis: 30%; /* Occupies 30% of the screen */
+  max-width: 400px;
+  background-color: #ffffff;
+  border-right: 1px solid #e0e0e0;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.sidebar-image {
+  width: 100%;
+  max-width: 300px;
+  margin-top: 130px;
+  height: auto;
+  /* This makes the image black and white */
+  filter: grayscale(50%);
+  opacity: 1;
+}
+
+.sidebar h2 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-top: 20px;
+}
+
+.sidebar p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Main Content (Right Side) */
+.main-content {
+  flex-basis: 70%;
+  padding: 40px;
+  overflow-y: auto; /* Allows scrolling if content is long */
+  height: 100vh;
+}
+
+/* Generic Button Styles (Optional but helpful) */
+button {
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* --- Home Page Header --- */
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+
+.home-header h3 {
+  font-size: 1.5rem;
+  color: #2c3e50;
+}
+
+.btn-create-note {
+  background-color: #007bff;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-create-note:hover {
+  background-color: #0069d9;
+}
+
+.search-container {
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: inherit;
+}
+
+.search-bar:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.2);
+}
