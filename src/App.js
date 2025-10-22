@@ -80,7 +80,7 @@ function App() {
       
       <div className="main-content">
         <div className="home-header">
-          <h3>Your Notes</h3>
+          <h3 className='hello'>Your Notes</h3>
           <button className="btn-create-note" onClick={handleCreateNote}>
             + Create Note
           </button>
