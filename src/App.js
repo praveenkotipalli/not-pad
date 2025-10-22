@@ -1,72 +1,91 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { auth } from './firebase'; // <-- Import auth
+import { onAuthStateChanged, signOut } from 'firebase/auth'; // <-- Import auth functions
 import './App.css'; 
 import NoteList from './components/NoteList';
 import NoteViewModal from './components/NoteViewModal';
-import EditorModal from './components/EditorModal'; // We will create this
+import EditorModal from './components/EditorModal';
+import LoginPage from './components/LoginPage'; // <-- Import the new page
 
 function App() {
-  // This state tracks the note for the EDITOR modal
-  // It can be null (closed), "new" (for create), or an id (for edit)
-  const [editingNoteId, setEditingNoteId] = useState(null);
+  const [user, setUser] = useState(null); // <-- State to hold the user object
+  const [loading, setLoading] = useState(true); // <-- Loading state
   
-  // This state tracks the note for the VIEW modal
+  const [editingNoteId, setEditingNoteId] = useState(null);
   const [viewingNoteId, setViewingNoteId] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
 
-  // --- Handlers for Editor Modal ---
-  const handleCreateNote = () => {
-    setEditingNoteId("new"); // Open editor in "create" mode
-  };
-  
+  // This effect runs once and listens for auth changes
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+    });
+    
+    // Cleanup the listener on unmount
+    return () => unsubscribe();
+  }, []);
+
+  // --- All your existing handlers ---
+  const handleCreateNote = () => setEditingNoteId("new");
   const handleEditNote = (id) => {
-    setEditingNoteId(id); // Open editor in "edit" mode
-    setViewingNoteId(null); // Close view modal if open
-  };
-
-  const handleCloseEditor = () => {
-    setEditingNoteId(null); // Close editor modal
-  };
-
-  // --- Handlers for View Modal ---
-  const handleViewNote = (id) => {
-    setViewingNoteId(id);
-  };
-
-  const handleCloseView = () => {
+    setEditingNoteId(id);
     setViewingNoteId(null);
   };
-
-  // This is called from the view modal's pencil icon
+  const handleCloseEditor = () => setEditingNoteId(null);
+  const handleViewNote = (id) => setViewingNoteId(id);
+  const handleCloseView = () => setViewingNoteId(null);
   const handleSwitchToEdit = (id) => {
-    setViewingNoteId(null); // Close view
-    setEditingNoteId(id); // Open edit
+    setViewingNoteId(null);
+    setEditingNoteId(id);
+  };
+  
+  // --- New Logout Handler ---
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.error("Error signing out: ", error);
+    }
   };
 
+  // 1. Show a loading screen while checking auth
+  if (loading) {
+    return <div className="app-loading">Loading...</div>; // You can style this
+  }
+
+  // 2. If no user, show the Login Page
+  if (!user) {
+    return <LoginPage />;
+  }
+
+  // 3. If user is logged in, show the app
   return (
     <div className="app-container">
       
       <div className="sidebar">
-
-      <h2>Not.pad</h2>
-      <p>AI-powered*</p>
-
+      <h2>Notpad</h2>
+      <p className="sidebar-welcome">Ai powered*</p>
+      {/* <p className="sidebar-welcome">Welcome, {user.displayName || 'User'}!</p> */}
         <img 
           src="./Notebook-rafiki.png" 
-          alt="Notebook Illustration" 
+          alt="Notebook" 
           className="sidebar-image"
         />
         
+        <button className="btn-logout" onClick={handleLogout}>
+          Log Out
+        </button>
       </div>
       
       <div className="main-content">
-        {/* The new minimal home page header */}
         <div className="home-header">
           <h3>Your Notes</h3>
           <button className="btn-create-note" onClick={handleCreateNote}>
             + Create Note
           </button>
         </div>
-
+        
         <div className="search-container">
           <input
             type="search"
@@ -78,29 +97,29 @@ function App() {
         </div>
         
         <NoteList 
-          onEditNote={handleEditNote} // Pass the edit handler
-          onViewNote={handleViewNote} 
+          userId={user.uid} // <-- PASS USER ID
+          onEditNote={handleEditNote} 
+          onViewNote={handleViewNote}
           searchQuery={searchQuery}
         />
       </div>
 
-      {/* Render the View Modal */}
       {viewingNoteId && (
         <NoteViewModal 
+          userId={user.uid} // <-- PASS USER ID
           noteId={viewingNoteId}
           onClose={handleCloseView}
           onEdit={handleSwitchToEdit}
         />
       )}
       
-      {/* Render the Editor Modal */}
       {editingNoteId && (
         <EditorModal
+          userId={user.uid} // <-- PASS USER ID
           noteId={editingNoteId}
           onClose={handleCloseEditor}
         />
       )}
-
     </div>
   );
 }

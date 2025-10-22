@@ -10,7 +10,7 @@ const PencilIcon = () => (
   </svg>
 );
 
-function NoteViewModal({ noteId, onClose, onEdit }) {
+function NoteViewModal({userId, noteId, onClose, onEdit }) {
   const [note, setNote] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -18,7 +18,7 @@ function NoteViewModal({ noteId, onClose, onEdit }) {
   useEffect(() => {
     const fetchNote = async () => {
       setLoading(true);
-      const noteDoc = await getDoc(doc(db, "notes", noteId));
+      const noteDoc = await getDoc(doc(db,"users", userId, "notes", noteId));
       if (noteDoc.exists()) {
         setNote(noteDoc.data());
       } else {
@@ -28,7 +28,7 @@ function NoteViewModal({ noteId, onClose, onEdit }) {
       setLoading(false);
     };
     fetchNote();
-  }, [noteId, onClose]);
+  }, [noteId, onClose, userId]);
 
   const handleEditClick = () => {
     onEdit(noteId); // Call App.js to switch to editor

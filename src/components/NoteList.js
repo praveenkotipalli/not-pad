@@ -5,7 +5,7 @@ import NoteCard from './NoteCard';
 import './NoteList.css';
 
 // 1. Accept 'searchQuery' as a prop
-function NoteList({ onEditNote, onViewNote, searchQuery }) {
+function NoteList({ userId, onEditNote, onViewNote, searchQuery }) {
   const [allNotes, setAllNotes] = useState([]); // Holds all notes from DB
   const [filteredNotes, setFilteredNotes] = useState([]); // Holds notes to display
   const [loading, setLoading] = useState(true);
@@ -13,7 +13,7 @@ function NoteList({ onEditNote, onViewNote, searchQuery }) {
   // Effect 1: Fetch all notes from Firestore (runs once)
   useEffect(() => {
     setLoading(true);
-    const q = query(collection(db, "notes"), orderBy("createdAt", "desc"));
+    const q = query(collection(db, "users", userId,  "notes"), orderBy("createdAt", "desc"));
 
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const notesData = [];
@@ -49,7 +49,7 @@ function NoteList({ onEditNote, onViewNote, searchQuery }) {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this note?")) {
       try {
-        await deleteDoc(doc(db, "notes", id));
+        await deleteDoc(doc(db, "users", userId, "notes", id));
       } catch (e) {
         console.error("Error deleting note: ", e);
         alert("Failed to delete note.");

@@ -1,58 +1,80 @@
+/* Backdrop */
 .modal-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    animation: fadeIn 0.3s ease-out;
-  }
-  
-  /* This is the new class for the editor modal */
-  .editor-modal-content {
-    background-color: white;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 800px; /* <-- Wider than the view modal */
-    max-height: 90vh;
-    overflow-y: auto;
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    animation: slideIn 0.3s ease-out;
-    
-    /* We add padding here, so the NoteEditor doesn't need its own */
-    padding: 20px 30px;
-  }
-  
-  /* We can re-use the close button style from the other modal */
-  .modal-close-btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: none;
-    border: none;
-    font-size: 2.5rem;
-    color: #aaa;
-    cursor: pointer;
-    line-height: 1;
-    padding: 0;
-    transition: color 0.2s;
-  }
-  .modal-close-btn:hover {
-    color: #333;
-  }
-  
-  /* Simple animations */
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  
-  @keyframes slideIn {
-    from { transform: translateY(-30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(12, 12, 12, 0.8); 
+  /* Matches your landing background tone */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Modal Content */
+.editor-modal-content {
+  background: linear-gradient(to bottom right, #1c1c1d, #1c1c1d);
+  border: 1px solid rgba(71, 85, 105, 0.4);
+  border-radius: 1rem;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  color: #f8fafc; /* Light text */
+  /* box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6); */
+  animation: slideIn 0.3s ease-out;
+  padding: 2rem 2.5rem;
+  backdrop-filter: blur(40px);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+}
+
+/* Close Button */
+.modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  font-size: 2rem;
+  color: #94a3b8;
+  cursor: pointer;
+  line-height: 1;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.modal-close-btn:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Scrollbar styling to match dark mode */
+.editor-modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.editor-modal-content::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 4px;
+}
+
+.editor-modal-content::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}

@@ -20,7 +20,7 @@ if (SpeechRecognition) {
 }
 
 // This component now receives props to handle editing
-function NoteEditor({ currentNoteId, onNoteSaved, onCancelEdit }) {
+function NoteEditor({userId, currentNoteId, onNoteSaved, onCancelEdit }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [originalDesc, setOriginalDesc] = useState('');
@@ -52,7 +52,7 @@ function NoteEditor({ currentNoteId, onNoteSaved, onCancelEdit }) {
         return;
       }
       
-      const noteDoc = await getDoc(doc(db, "notes", currentNoteId));
+      const noteDoc = await getDoc(doc(db,"users", userId, "notes", currentNoteId));
       if (noteDoc.exists()) {
         const data = noteDoc.data();
         setTitle(data.title || ''); 
@@ -62,7 +62,7 @@ function NoteEditor({ currentNoteId, onNoteSaved, onCancelEdit }) {
       }
     };
     loadNote();
-  }, [currentNoteId]); // This runs every time currentNoteId changes
+  }, [currentNoteId, userId]); // This runs every time currentNoteId changes
 
   // Speech recognition logic (targeting the description field)
   useEffect(() => {
@@ -134,7 +134,7 @@ function NoteEditor({ currentNoteId, onNoteSaved, onCancelEdit }) {
     try {
       if (currentNoteId) {
         // This is an UPDATE (Edit)
-        const noteRef = doc(db, "notes", currentNoteId);
+        const noteRef = doc(db,"users", userId, "notes", currentNoteId);
         await updateDoc(noteRef, {
           title: noteData.title,
           description: noteData.description,
@@ -143,7 +143,7 @@ function NoteEditor({ currentNoteId, onNoteSaved, onCancelEdit }) {
         });
       } else {
         // This is a CREATE (New)
-        await addDoc(collection(db, "notes"), noteData);
+        await addDoc(collection(db,"users", userId, "notes"), noteData);
       }
       
       alert(`Note ${currentNoteId ? 'updated' : 'saved'} successfully!`);
