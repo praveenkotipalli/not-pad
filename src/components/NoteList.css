@@ -27,9 +27,9 @@
   text-align: center;
   padding: 20px;
   color: #94a3b8;
-  background: rgba(30, 41, 59, 0.3);
+  /* background: rgba(30, 41, 59, 0.3); */
   border-radius: 10px;
-  border: 1px dashed rgba(71, 85, 105, 0.4);
+  /* border: 1px dashed rgba(71, 85, 105, 0.4); */
 }
 
 .empty-notes-placeholder .image {
