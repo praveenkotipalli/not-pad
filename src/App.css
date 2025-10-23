@@ -60,6 +60,57 @@ body {
   /* filter: grayscale(0%); */
 }
 
+
+.home-header-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.loading-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #007bff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.btn-youtube-import {
+  background-color: #FF0000; /* YouTube Red */
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.btn-youtube-import:hover {
+  background-color: #c40000;
+}
 .sidebar h2 {
   font-size: 2rem;
   color: #ffffff;
