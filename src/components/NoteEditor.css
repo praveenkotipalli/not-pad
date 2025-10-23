@@ -1,9 +1,9 @@
 .note-editor-container {
-  /* background: linear-gradient(to bottom right, #1c1c1d, #0c0c0c); */
-  /* border: 1px solid rgba(71, 85, 105, 0.4); */
-  /* border-radius: 12px; */
-  /* padding: 25px; */
-  /* box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); */
+  background: linear-gradient(to bottom right, #1c1c1d, #0c0c0c);
+  border: 1px solid rgba(71, 85, 105, 0.4);
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
   color: #f8fafc;
   backdrop-filter: blur(30px);
   margin-bottom: 30px;
