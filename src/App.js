@@ -206,13 +206,15 @@ function App() {
       <div className="app-container">
         
         <div className="sidebar">
+        <h2>Notpad</h2>
+        <p>Ai powered*</p>
+        {/* <p className="sidebar-welcome">Welcome, {user.displayName || 'User'}!</p> */}
           <img 
-            src="https://storyset.com/illustration/notebook/rafiki" 
+            src="./Notebook-rafiki.png" 
             alt="Notebook" 
             className="sidebar-image"
           />
-          <h2>VoiceNotepad</h2>
-          <p className="sidebar-welcome">Welcome, {user.displayName || 'User'}!</p>
+          
           <button className="btn-logout" onClick={handleLogout}>
             Log Out
           </button>
